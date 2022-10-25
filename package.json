@@ -1,0 +1,14 @@
+{
+  "name": "after",
+  "version": "1.0.0",
+  "description": "after project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sharp"
+  ],
+  "author": "axisotherwise",
+  "license": "MIT"
+}
