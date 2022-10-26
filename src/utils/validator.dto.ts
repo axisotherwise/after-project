@@ -1,6 +1,6 @@
 import { validate } from "class-validator";
 
-export const validatorDtos = async (...dtos: object[]) => {
+export const validatorDto = async (...dtos: object[]) => {
     for (const dto of dtos) {
         const errors = await validate(dto);
 
