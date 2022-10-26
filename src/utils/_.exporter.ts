@@ -1,2 +1,3 @@
 export * from "./async.handler";
-export * from "./validator.dtos";
+export * from "./validator.dto";
+export * from "./bcrypt";

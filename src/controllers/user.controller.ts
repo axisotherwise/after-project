@@ -4,7 +4,7 @@ import { Service } from "typedi";
 import { UserService } from "../services/_.exporter";
 import { IUserController } from "../types/_.exporter";
 import { CreateUserDto } from "../dtos/_.exporter";
-import { validatorDtos } from "../utils/_.exporter";
+import { validatorDto } from "../utils/_.exporter";
 
 @Service()
 export class UserController implements IUserController{
@@ -14,7 +14,7 @@ export class UserController implements IUserController{
         { body }: Request<unknown, unknown, CreateUserDto>,
         res: Response
     ) => {
-        await validatorDtos(new CreateUserDto(body));
+        await validatorDto(new CreateUserDto(body));
         
         const result = await this.userService.createUser(body);
 
