@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { user } from "@prisma/client";
+import { User, Profile } from "@prisma/client";
 
 import Prisma from "../db/prisma";
 import { IUserDao } from "../types/_.exporter";
@@ -13,15 +13,33 @@ export class UserDao implements IUserDao{
         this.prisma = Prisma;
     }
 
+    async findUserByEmail(email: string) {
+        return await this.prisma.user.findUnique({
+            where: {
+                email,
+            },
+        });
+    }
+
     async createUser({
         email,
         password,
-    }: CreateUserDto) {
-        return await this.prisma.user.create({
+    }: CreateUserDto) { 
+        const user = await this.prisma.user.create({
             data: {
                 email,
                 password,
-            }
+            },
         });
+
+        const profile = await this.prisma.profile.create({
+            data: {
+                gender: "남자",
+                introduce: "자기소개",
+                userId: user.id,
+            },
+        });
+
+        return user;
     }
 }
