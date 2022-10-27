@@ -8,6 +8,8 @@ export interface ICreateUser {
     email: string;
     password: string;
     passwordConfirm?: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface IUserController {
@@ -15,11 +17,10 @@ export interface IUserController {
 }
 
 export interface IUserService {
-    createUser: (createUserDto: CreateUserDto) => Promise<User>;
+    findUserByEmail: (email: string) => Promise<User | null>; 
+    createUser: (createUserDto: CreateUserDto) => Promise<User | null>;
 }
 
 export interface IUserDao {
-    createUser: (
-        createUserDao: CreateUserDto
-    ) => Promise<User>;
+    createUser: (createUserDao: CreateUserDto) => Promise<User>;
 }
