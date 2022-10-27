@@ -9,11 +9,9 @@ import { CreateUserDto } from "../dtos/_.exporter";
 export class UserDao implements IUserDao{
     private readonly prisma;
     
-    constructor() {
-        this.prisma = Prisma;
-    }
+    constructor() {this.prisma = Prisma};
 
-    async findUserByEmail(email: string) {
+    async findUserByEmail(email: string): Promise<User | null> {
         return await this.prisma.user.findUnique({
             where: {
                 email,
@@ -24,7 +22,8 @@ export class UserDao implements IUserDao{
     async createUser({
         email,
         password,
-    }: CreateUserDto) { 
+    }: CreateUserDto): Promise<User> { 
+        // transaction
         const user = await this.prisma.user.create({
             data: {
                 email,
