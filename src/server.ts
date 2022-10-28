@@ -4,5 +4,5 @@ import { startApp } from "./app";
 startApp().then((app) => {
     const server = http.createServer(app);
 
-    server.listen(1000, () => console.log("port 1000"));
+    server.listen(2000, () => console.log("port 2000"));
 });
