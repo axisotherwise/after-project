@@ -11,6 +11,14 @@ export class PostDao implements IPostDao {
 
     constructor() {this.prisma = Prisma};
 
+    async findPost(postId: number): Promise<Post | null> {
+        return await this.prisma.post.findUnique({
+            where: {
+                id: postId,
+            }
+        });
+    }
+    
     async createPost({
         title,
         content,

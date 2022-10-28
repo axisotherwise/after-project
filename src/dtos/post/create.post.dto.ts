@@ -14,6 +14,7 @@ export class CreatePostDto {
     @IsNumber()
     @Min(1)
     @Max(100)
+    @IsOptional()
     postId?: number;
 
     @IsString()
@@ -27,9 +28,11 @@ export class CreatePostDto {
     image: string | null;
 
     @IsString()
+    @IsOptional()
     createdAt?: string;
 
     @IsString()
+    @IsOptional()
     updatedAt?: string;
 
     @IsNumber()
