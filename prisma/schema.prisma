@@ -1,6 +1,6 @@
 generator client {
-    provider = "prisma-client-js"
-    previewFeatures = ["interactiveTransactions"] 
+    provider        = "prisma-client-js"
+    previewFeatures = ["interactiveTransactions"]
 }
 
 datasource db {
@@ -9,40 +9,58 @@ datasource db {
 }
 
 model User {
-    id          Int         @id @default(autoincrement())
-    email       String      @unique(map: "email_UNIQUE") @db.VarChar(255)
-    password    String      @db.VarChar(255)
-    createdAt   DateTime    @default(now()) @map("created_at")
-    deleteAt    DateTime    @default(now()) @map("deleted_at")
+    id        Int      @id @default(autoincrement())
+    email     String   @unique(map: "email_UNIQUE") @db.VarChar(255)
+    password  String   @db.VarChar(255)
+    createdAt DateTime @default(now()) @map("created_at")
+    deleteAt  DateTime @default(now()) @map("deleted_at")
 
-    profile     Profile?
-    posts       Post[]
+    profile Profile?
+    posts   Post[]
 
-    @@map("user")
+    @@map("users")
 }
 
 model Profile {
-    id          Int         @id @default(autoincrement())
-    gender      String      @db.VarChar(5)
-    introduce   String      @db.VarChar(100)
-    
-    user        User        @relation(fields: [userId], references: [id])
-    userId      Int         @unique
+    id        Int    @id @default(autoincrement())
+    gender    String @db.VarChar(5)
+    introduce String @db.VarChar(100)
+
+    user   User @relation(fields: [userId], references: [id])
+    userId Int  @unique
 
     @@map("profiles")
 }
 
 model Post {
-    id          Int         @id @default(autoincrement())
-    title       String      @db.VarChar(100)
-    content     String      @db.VarChar(255)
-    image       String?     @db.VarChar(255)
-    createdAt   DateTime    @default(now()) @map("created_at")
-    updatedAt   DateTime    @default(now()) @map("updated_at")
+    id        Int      @id @default(autoincrement())
+    title     String   @db.VarChar(100)
+    content   String   @db.VarChar(255)
+    image     String?  @db.VarChar(255)
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @default(now()) @map("updated_at")
 
-    user        User        @relation(fields: [userId], references: [id])
-    userId      Int         @unique
+    user     User            @relation(fields: [userId], references: [id])
+    userId   Int             @unique
+    hashtags HashtagToPost[]
 
     @@map("posts")
 }
 
+model Hashtag {
+    id Int @id @default(autoincrement())
+    title     String  @db.VarChar(100)
+
+    posts HashtagToPost[]
+
+    @@map("hashtags")
+}
+
+model HashtagToPost {
+    post      Post    @relation(fields: [postId], references: [id])
+    postId    Int
+    hashtag   Hashtag @relation(fields: [hashtagId], references: [id])
+    hashtagId Int
+
+    @@id([postId, hashtagId])
+}
