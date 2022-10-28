@@ -6,6 +6,7 @@ import morgan from "morgan";
 import { 
     userRouter,
     postRouter,
+    // authRouter,
 } from "./routes/_.exporter";
 
 export async function startApp() {
@@ -13,10 +14,11 @@ export async function startApp() {
 
     app.use(morgan("dev"));
     app.use(express.json());
-    app.use(express.urlencoded());
+    app.use(express.urlencoded({ extended: true }));
 
     app.use("/api/user", userRouter);
     app.use("/api/post", postRouter);
+    // app.use("/api/auth", authRouter);
 
     return app;
 }

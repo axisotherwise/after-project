@@ -8,6 +8,10 @@ import { CreatePostDto } from "../dtos/_.exporter";
 export class PostService implements IPostService {
     constructor(private readonly postDao: PostDao) {};
 
+    async findPost(postId: number) {
+        return await this.postDao.findPost(postId);
+    }
+
     async createPost({ 
         title,
         content,
@@ -18,7 +22,7 @@ export class PostService implements IPostService {
             title,
             content,
             image,
-            userId,
+            userId: 1,
         };
 
         return await this.postDao.createPost(input);

@@ -19,6 +19,7 @@ export interface IPostController {
 }
 
 export interface IPostService {
+    findPost : (postId: number) => Promise<Post | null>;
     createPost: (createPostDto: CreatePostDto) => Promise<Post>;
 }
 
