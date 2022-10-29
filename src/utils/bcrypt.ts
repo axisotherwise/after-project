@@ -6,8 +6,6 @@ export async function generateHashPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt(saltRound);
     const hashPassword = await bcrypt.hash(password, salt);
 
-    console.log(hashPassword);
-
     return hashPassword;
 }
 

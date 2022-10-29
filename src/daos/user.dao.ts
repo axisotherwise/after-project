@@ -22,23 +22,34 @@ export class UserDao implements IUserDao{
     async createUser({
         email,
         password,
-    }: CreateUserDto): Promise<User> { 
-        // transaction
-        const user = await this.prisma.user.create({
-            data: {
-                email,
-                password,
-            },
-        });
+        gender,
+        introduce
+    }: CreateUserDto) { 
+        return await this.prisma.$transaction(async (prisma) => {
+            const user = await prisma.user.create({
+                data: {
+                    email,
+                    password,
+                },
+                select: {
+                    id: true,
+                    email: true,
+                    createdAt: true,
+                },
+            });
 
-        const profile = await this.prisma.profile.create({
-            data: {
-                gender: "남자",
-                introduce: "자기소개",
-                userId: user.id,
-            },
-        });
+            const profile = await prisma.profile.create({
+                data: {
+                    gender,
+                    introduce,
+                    userId: user.id,
+                }
+            });
 
-        return user;
+            return {
+                user,
+                profile,
+            };
+        });
     }
 }

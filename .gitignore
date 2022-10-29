@@ -2,3 +2,5 @@ node_modules/
 .vscode/
 .env
 dist/
+private.pem
+public.pem

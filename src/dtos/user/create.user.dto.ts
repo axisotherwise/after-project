@@ -19,16 +19,34 @@ export class CreateUserDto {
     @IsString()
     passwordConfirm?: string;
 
+    @IsNotEmpty()
+    @IsString()
+    gender: string;
+
+    @IsNotEmpty()
+    @IsString()
+    introduce: string;
+
     @IsString()
     createdAt: string;
 
     @IsString()
     updatedAt: string;
 
-    constructor({ email, password, passwordConfirm, createdAt, updatedAt }: ICreateUser) {
+    constructor({ 
+        email,
+        password, 
+        passwordConfirm,
+        gender,
+        introduce,
+        createdAt,
+        updatedAt 
+    }: ICreateUser) {
         this.email = email;
         this.password = password;
         this.passwordConfirm = passwordConfirm;
+        this.gender = gender;
+        this.introduce = introduce;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

@@ -28,7 +28,7 @@ export default new LocalStrategy(LocalConfig, async (
 
     const comparePassword = await compareHashPassword(
         password,
-        findUser.password
+        findUser.password!
     );
 
     if (!comparePassword) return done(null, false, { message: "비밀번호가 일치하지않습니다."});

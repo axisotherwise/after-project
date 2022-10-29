@@ -6,14 +6,14 @@ import { CreateUserDto } from "../dtos/_.exporter";
 import { generateHashPassword, compareHashPassword } from "../utils/_.exporter";
 
 @Service()
-export class UserService implements IUserService{
+export class UserService implements IUserService {
     constructor(private readonly userDao: UserDao) {};
 
     async findUserByEmail(email: string) {
         return this.userDao.findUserByEmail(email);
     }
 
-    async createUser({ email, password }: CreateUserDto) {
+    async createUser({ email, password, gender, introduce }: CreateUserDto) {
         const findUser = await this.userDao.findUserByEmail(email);
 
         if (findUser) return null;
@@ -23,6 +23,8 @@ export class UserService implements IUserService{
         const input = {
             email,
             password: hashPassword,
+            gender,
+            introduce,
         } as CreateUserDto;
 
         return this.userDao.createUser(input);
