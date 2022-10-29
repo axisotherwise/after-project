@@ -6,7 +6,7 @@ import morgan from "morgan";
 import { 
     userRouter,
     postRouter,
-    // authRouter,
+    authRouter,
 } from "./routes/_.exporter";
 
 export async function startApp() {
@@ -18,7 +18,7 @@ export async function startApp() {
 
     app.use("/api/user", userRouter);
     app.use("/api/post", postRouter);
-    // app.use("/api/auth", authRouter);
+    app.use("/api/auth", authRouter);
 
     return app;
 }
