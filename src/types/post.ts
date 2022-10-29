@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-
 import { Post } from "@prisma/client";
 
 import { CreatePostDto } from "../dtos/_.exporter"
