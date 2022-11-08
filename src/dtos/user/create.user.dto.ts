@@ -26,11 +26,9 @@ export class CreateUserDto {
     @IsNotEmpty()
     @IsString()
     introduce: string;
-
-    @IsString()
+    
     createdAt: string;
 
-    @IsString()
     updatedAt: string;
 
     constructor({ 
