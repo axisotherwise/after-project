@@ -3,7 +3,7 @@ import { Service } from "typedi";
 import { IUserService } from "../types/_.exporter";
 import { UserDao } from "../daos/_.exporter";
 import { CreateUserDto } from "../dtos/_.exporter";
-import { generateHashPassword, compareHashPassword } from "../utils/_.exporter";
+import { generateHashPassword } from "../utils/_.exporter";
 
 @Service()
 export class UserService implements IUserService {
