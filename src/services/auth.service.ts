@@ -6,7 +6,7 @@ import { LoginDto } from "../dtos/_.exporter";
 import { compareHashPassword } from "../utils/bcrypt";
 import {
     generateToken,
-    verifyToken,
+    // verifyToken,
 } from "../utils/token";
 
 @Service()
@@ -24,7 +24,10 @@ export class AuthService implements IAuthService {
         );
 
         if (!comparePassword) return "비밀번호가 일치하지 않습니다.";
-
         
+        return await generateToken(
+            findUser.id,
+            findUser.email
+        );
     }
 }

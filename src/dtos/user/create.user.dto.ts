@@ -2,6 +2,7 @@ import {
     IsString,
     IsNotEmpty,
     IsEmail,
+    isBoolean,
 } from "class-validator";
 
 import { ICreateUser } from "../../types/_.exporter";

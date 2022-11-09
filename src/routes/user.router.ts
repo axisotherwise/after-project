@@ -8,6 +8,6 @@ const userRouter = Router();
 
 const userController = Container.get(UserController);
 
-userRouter.post("/create", userController.createUser);
+userRouter.post("/create", asyncHandler(userController.createUser));
 
 export { userRouter };
