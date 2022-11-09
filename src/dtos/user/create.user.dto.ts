@@ -2,6 +2,7 @@ import {
     IsString,
     IsNotEmpty,
     IsEmail,
+    isBoolean,
 } from "class-validator";
 
 import { ICreateUser } from "../../types/_.exporter";
@@ -26,11 +27,9 @@ export class CreateUserDto {
     @IsNotEmpty()
     @IsString()
     introduce: string;
-
-    @IsString()
+    
     createdAt: string;
 
-    @IsString()
     updatedAt: string;
 
     constructor({ 

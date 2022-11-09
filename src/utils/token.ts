@@ -2,15 +2,14 @@
 import {
     sign,
     verify,
-    SignOptions
+    SignOptions,
 } from "jsonwebtoken";
 
 import { 
     privateKey,
-    publicKey
 } from "../config/index";
 
-export function generateToken(
+export async function generateToken(
     id: number,
     email: string
 ) {
@@ -20,16 +19,18 @@ export function generateToken(
     };
 
     const options: SignOptions = {
+        issuer: "axisotherwise",
+        expiresIn: "10m",
         algorithm: "RS256",
     };
 
-    return sign(
+    return await sign(
         payload,
         privateKey,
-        options
-    )
+        options,
+    );
 }
 
-export function verifyToken(token: string) {
-    return verify(token, publicKey);
+export async function verifyToken(token: string, publicKey: string) {
+    return await verify(token, publicKey);
 }

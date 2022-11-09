@@ -22,7 +22,7 @@ export class PostService implements IPostService {
             title,
             content,
             image,
-            userId: 1,
+            userId,
         };
 
         return await this.postDao.createPost(input);

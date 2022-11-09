@@ -22,34 +22,34 @@ model User {
 }
 
 model Profile {
-    id        Int    @id @default(autoincrement())
-    gender    String @db.VarChar(5)
-    introduce String @db.VarChar(100)
+    id        Int       @id @default(autoincrement())
+    gender    String    @db.VarChar(5)
+    introduce String    @db.VarChar(100)
 
-    user   User @relation(fields: [userId], references: [id])
-    userId Int  @unique @map("user_id")
+    user   User         @relation(fields: [userId], references: [id])
+    userId Int          @unique @map("user_id")
 
     @@map("profiles")
 }
 
 model Post {
-    id        Int      @id @default(autoincrement())
-    title     String   @db.VarChar(100)
-    content   String   @db.VarChar(255)
-    image     String?  @db.VarChar(255)
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @default(now()) @map("updated_at")
+    id        Int       @id @default(autoincrement())
+    title     String    @db.VarChar(100)
+    content   String    @db.VarChar(255)
+    image     String?   @db.VarChar(255)
+    createdAt DateTime  @default(now()) @map("created_at")
+    updatedAt DateTime  @default(now()) @map("updated_at")
 
-    user     User            @relation(fields: [userId], references: [id])
-    userId   Int             @unique
+    user     User       @relation(fields: [userId], references: [id])
+    userId   Int        @unique
     hashtags HashtagToPost[]
 
     @@map("posts")
 }
 
 model Hashtag {
-    id Int @id @default(autoincrement())
-    title     String  @db.VarChar(100)
+    id Int              @id @default(autoincrement())
+    title     String    @db.VarChar(100)
 
     posts HashtagToPost[]
 
@@ -57,9 +57,9 @@ model Hashtag {
 }
 
 model HashtagToPost {
-    post      Post    @relation(fields: [postId], references: [id])
+    post      Post      @relation(fields: [postId], references: [id])
     postId    Int
-    hashtag   Hashtag @relation(fields: [hashtagId], references: [id])
+    hashtag   Hashtag   @relation(fields: [hashtagId], references: [id])
     hashtagId Int
 
     @@id([postId, hashtagId])

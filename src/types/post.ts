@@ -14,6 +14,7 @@ export interface ICreatePost {
 }
 
 export interface IPostController {
+    findPost: (req: Request, res: Response) => Promise<Response>;
     createPost: (req: Request, res: Response) => Promise<Response>;
 }
 
