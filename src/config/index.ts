@@ -16,6 +16,15 @@ export const publicKey: string = fs.readFileSync(
     path.join(__dirname, "../../public.pem")
 ).toString();
 
+export const S3_ACCESS_KEY = process.env.S3_ACCESS_KEY;
+export const S3_SECRET_KEY = process.env.S3_SECRET_KEY;
+export const REGION = process.env.REGION;
+export const BUCKET = process.env.BUCKET;
+
+
+
+
+
 
 
 
